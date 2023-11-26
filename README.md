@@ -9,10 +9,3 @@
 
 - dotnet add package Microsoft.EntityFrameworkCore.Design --version 8.0.0
 - dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 8.0.0
-
-
-- <ItemGroup>
-    - <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0"/>
-    - <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0"/>
-- </ItemGroup>
-
