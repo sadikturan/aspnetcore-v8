@@ -12,7 +12,7 @@
 
 - dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 8.0.0
 
-**Proje Referansının Eklenmesi**
+**3- Proje Referansının Eklenmesi**
 
 - cd StoreApp.Web
 - dotnet add reference ../StoreApp.Data/StoreApp.Data.csproj
