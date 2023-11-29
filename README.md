@@ -1,18 +1,20 @@
-## Entity Framework Core 8 Kurulum Linkleri
+## Bootstrap ile Asp.NET Uygulamasına Tema Uygulama
 
-**1- Entity Framework Core Tools**
+**1- Libman Kurulumu**
 
-- dotnet tool uninstall --global dotnet-ef
-- dotnet tool install --global dotnet-ef --version 8.0.0
+- dotnet tool list -g
+- dotnet tool uninstall --global Microsoft.Web.LibraryManager.Cli
+- dotnet tool install --global Microsoft.Web.LibraryManager.Cli --version 2.1.175
 
-**2- Entity Framework Core Packages**
+**2- Libman Configuration File**
 
-- dotnet add package Microsoft.EntityFrameworkCore.Design --version 8.0.0
-- dotnet add package Microsoft.EntityFrameworkCore.Sqlite --version 8.0.0
+- cd storeApp.Web
+- libman init -p cdnjs
 
-- dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 8.0.0
+**3- Kütüphane Kurulumu**
 
-**3- Proje Referansının Eklenmesi**
+- libman install bootstrap@5.3.2 -d wwwroot/lib/bootstrap
 
-- cd StoreApp.Web
-- dotnet add reference ../StoreApp.Data/StoreApp.Data.csproj
+**4- Css Kütaphanesinin Dahil Edilmesi**
+
+- <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
