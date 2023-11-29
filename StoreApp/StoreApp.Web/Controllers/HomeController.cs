@@ -28,6 +28,7 @@ public class HomeController :Controller
             Products = products,
             PageInfo = new PageInfo {
                 ItemsPerPage = pageSize,
+                CurrentPage = page,
                 TotalItems = _storeRepository.Products.Count()
             }
         });

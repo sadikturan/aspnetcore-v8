@@ -19,6 +19,9 @@ public class PageLinkTagHelper: TagHelper
     public ViewContext? ViewContext { get; set; }
     public PageInfo? PageModel { get; set; }
     public string? PageAction { get; set; }
+    public string PageClass { get; set; } = string.Empty;
+    public string PageClassLink { get; set; } = string.Empty;
+    public string PageClassActive { get; set; } = string.Empty;
     public override void Process(TagHelperContext context, TagHelperOutput output)
     {
         if(ViewContext != null && PageModel != null)
@@ -29,6 +32,10 @@ public class PageLinkTagHelper: TagHelper
             {
                 TagBuilder link = new TagBuilder("a");
                 link.Attributes["href"] = urlHelper.Action(PageAction, new { page = i});
+                
+                link.AddCssClass(PageClass);
+                link.AddCssClass(i == PageModel.CurrentPage ? PageClassActive : PageClassLink);
+
                 link.InnerHtml.Append(i.ToString());
                 div.InnerHtml.AppendHtml(link);
             }
