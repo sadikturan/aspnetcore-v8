@@ -11,12 +11,11 @@ public class HomeController :Controller
     {
         _storeRepository = storeRepository;
     }
-    // localhost:5000/?page=2
     public IActionResult Index(int page = 1) 
     {
         var products = _storeRepository
             .Products
-            .Skip((page - 1) * pageSize)   // 1 -1 => 0 * 3 => 0   // 2 - 1 => 1 * 3 => 3  // 3 - 1 => 2 * 3 => 6
+            .Skip((page - 1) * pageSize)   
             .Select(p => 
                 new ProductViewModel {
                     Id = p.Id,
@@ -26,7 +25,11 @@ public class HomeController :Controller
                 }).Take(pageSize);
 
         return View(new ProductListViewModel {
-            Products = products
+            Products = products,
+            PageInfo = new PageInfo {
+                ItemsPerPage = pageSize,
+                TotalItems = _storeRepository.Products.Count()
+            }
         });
 
     }
