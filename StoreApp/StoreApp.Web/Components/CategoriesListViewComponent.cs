@@ -14,7 +14,6 @@ public class CategoriesListViewComponent:ViewComponent
     {
         return View(_storeRepository
                     .Products
-                    .Select(c => c.Category)
                     .Distinct()
                     .OrderBy(c => c));
     }
