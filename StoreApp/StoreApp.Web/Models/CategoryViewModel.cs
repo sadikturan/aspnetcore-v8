@@ -1,10 +1,8 @@
-namespace StoreApp.Data.Concrete;
+namespace StoreApp.Web.Models;
 
-public class Category
+public class CategoryViewModel
 {
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
     public string Url { get; set; } = string.Empty; 
-    public List<Product> Products { get; set; } = new();
 }
-
