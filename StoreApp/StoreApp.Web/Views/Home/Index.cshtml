@@ -25,12 +25,15 @@
             </div>
         }
 
-        <div 
-            page-model="@Model.PageInfo" 
-            page-action="Index"
-            page-class="btn"
-            page-class-link="btn-outline-secondary"
-            page-class-active="btn-secondary"
-            class="btn-group my-2"></div>
+        @if(Model.PageInfo.TotalPages > 1)
+        {
+            <div 
+                page-model="@Model.PageInfo" 
+                page-action="Index"
+                page-class="btn"
+                page-class-link="btn-outline-secondary"
+                page-class-active="btn-secondary"
+                class="btn-group my-2"></div>
+        }
     </div>
 </div>
