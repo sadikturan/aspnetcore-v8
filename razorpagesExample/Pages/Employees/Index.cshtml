@@ -1,0 +1,21 @@
+@page
+@using Microsoft.AspNetCore.Mvc.RazorPages
+@model IndexModel
+@{
+    ViewData["Title"] = "Employees";
+}
+
+<h1>Employees</h1>
+<p>@Model.Message</p>
+
+@functions {
+    public class IndexModel : PageModel
+    {
+        public string Message { get; set; } = string.Empty;
+        public void OnGet()
+        {
+            Message = "Merhaba Asp.net Razor Pages";
+        }
+
+    }
+}
