@@ -1,0 +1,37 @@
+@page "{id}"
+@model EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>edit</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Employee.Id">
+    <div class="row mb-3">
+        <label asp-for="Employee.Name" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="Employee.Name">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label asp-for="Employee.Email" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="Employee.Email">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label asp-for="Employee.Photo" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+        <input class="form-control" asp-for="Employee.Photo">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label asp-for="Employee.Deparment" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+        <input class="form-control" asp-for="Employee.Deparment">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a href="/Employees/Index" class="btn btn-primary">Cancel</a>
+</form>
