@@ -1,4 +1,4 @@
-@page "list"
+@page 
 @using Microsoft.AspNetCore.Mvc.RazorPages
 @using razorpagesExample.Repository
 @using razorpagesExample.Models
@@ -18,7 +18,7 @@
                 <div class="card-body">
                     <h5 class="card-title">@emp.Name</h5>
                     <p class="card-text">@emp.Deparment</p>
-                    <a href="#" class="btn btn-primary">Details</a>
+                    <a asp-page="/employees/details" asp-route-id="@emp.Id" class="btn btn-primary">Details</a>
                 </div>
             </div>
         </div>
