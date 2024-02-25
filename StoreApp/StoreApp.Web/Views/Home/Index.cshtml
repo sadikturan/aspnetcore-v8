@@ -22,6 +22,10 @@
                         <span class="badge rounded-pill text-bg-success">@p.Price TL</span>
                     </div>
                 </div>
+                <form asp-page="/Cart" method="post">
+                    <input type="hidden" asp-for="@p.Id">
+                    <button type="submit" class="btn btn-outline-success btn-sm pull-right" style="float:right;">Sepete Ekle</button>
+                </form>
             </div>
         }
 
