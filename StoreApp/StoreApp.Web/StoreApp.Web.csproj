@@ -9,11 +9,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0"/>
-    <PackageReference Include="AutoMapper" Version="12.0.1"/>
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0" />
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\StoreApp.Data\StoreApp.Data.csproj"/>
+    <ProjectReference Include="..\StoreApp.Data\StoreApp.Data.csproj" />
   </ItemGroup>
 </Project>
