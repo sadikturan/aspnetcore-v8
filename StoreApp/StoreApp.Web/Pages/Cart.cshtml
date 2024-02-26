@@ -1,3 +1,40 @@
-@page
+﻿@page
+@model CartModel
 
-<h1>Cart Page</h1>
+<h2>Alışveriş Sepeti</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Quantity</th>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model?.Cart?.Items ?? Enumerable.Empty<CartItem>())
+        {
+            <tr>
+                <td>@item.Quantity</td>
+                <td>@item.Product.Name</td>
+                <td>@item.Product.Price</td>
+                <td>
+                    @((item.Quantity * item.Product.Price).ToString()) ₺
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">Total:</td>
+            <td>
+                @Model?.Cart?.CalculateTotal() ₺
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+<div>
+    <a class="btn btn-primary" href="/">Alışverişe Devam Et</a>
+</div>
