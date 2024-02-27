@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace StoreApp.Web;
+namespace StoreApp.Web.TagHelpers;
 
 public static class SessionExtensions
 {
