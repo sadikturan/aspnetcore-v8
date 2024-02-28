@@ -1,0 +1,52 @@
+@model OrderModel
+
+<h1>Checkout</h1>
+<hr>
+<div class="row">
+    <div class="col-md-8">
+        <h4 class="mb-3">Sipariş Detayı</h4>
+        <form method="post" asp-action="Checkout">
+            <div class="mb-3">
+                <label asp-for="@Model.Name"></label>
+                <input asp-for="@Model.Name" class=form-control>
+            </div>
+            <div class="row">
+                <div class="col">
+                     <label asp-for="@Model.City"></label>
+                     <input asp-for="@Model.City" class=form-control>
+                </div>
+               <div class="col">
+                     <label asp-for="@Model.Phone"></label>
+                     <input asp-for="@Model.Phone" class=form-control>
+                </div>
+                <div class="col">
+                     <label asp-for="@Model.Email"></label>
+                     <input asp-for="@Model.Email" class=form-control>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.AddressLine"></label>
+                <textarea asp-for="@Model.AddressLine" class=form-control></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <div class="col-md-4">
+        <h4 class="mb-3">Sipariş Özeti</h4>
+        <ul class="list-group" mb-3>
+            @foreach(var item in Model.Cart.Items)
+            {
+                <li class="list-group-item d-flex justify-content-between">
+                    <div>
+                        <h6>@item.Product.Name x @item.Quantity</h6> 
+                    </div>
+                    <span>@item.Product.Price.ToString("c")</span>
+                </li>
+            }
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Toplam: </span>
+                <strong>@Model.Cart.CalculateTotal().ToString("c")</strong>
+            </li>
+        </ul>
+    </div>
+</div>
