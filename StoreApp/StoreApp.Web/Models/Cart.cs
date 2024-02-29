@@ -25,7 +25,7 @@ public class Cart
         Items.RemoveAll(i => i.Product.Id == product.Id);
     }
 
-    public decimal CalculateTotal()
+    public double CalculateTotal()
     {
         return Items.Sum(i => i.Product.Price * i.Quantity);
     }

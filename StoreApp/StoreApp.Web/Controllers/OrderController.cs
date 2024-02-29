@@ -46,7 +46,8 @@ public class OrderController:Controller
                 }).ToList()
             };
 
-            var payment = ProcessPayment();
+            model.Cart = cart;
+            var payment = ProcessPayment(model);
             if(payment.Status == "success")
             {
                 return RedirectToPage("/Completed", new { OrderId = order.Id });
@@ -63,7 +64,7 @@ public class OrderController:Controller
         }
     }
 
-    private Payment ProcessPayment()
+    private Payment ProcessPayment(OrderModel model)
     {
         Options options = new Options();
         options.ApiKey = "<api_key>";
@@ -72,9 +73,9 @@ public class OrderController:Controller
                 
         CreatePaymentRequest request = new CreatePaymentRequest();
         request.Locale = Locale.TR.ToString();
-        request.ConversationId = "123456789";
-        request.Price = "1";
-        request.PaidPrice = "1.2";
+        request.ConversationId = new Random().Next(111111111,999999999).ToString();
+        request.Price = model?.Cart?.CalculateTotal().ToString();
+        request.PaidPrice = model?.Cart?.CalculateTotal().ToString();
         request.Currency = Currency.TRY.ToString();
         request.Installment = 1;
         request.BasketId = "B67832";
@@ -82,11 +83,11 @@ public class OrderController:Controller
         request.PaymentGroup = PaymentGroup.PRODUCT.ToString();
 
         PaymentCard paymentCard = new PaymentCard();
-        paymentCard.CardHolderName = "Sadık Turan";
-        paymentCard.CardNumber = "5528790000000008";
-        paymentCard.ExpireMonth = "12";
-        paymentCard.ExpireYear = "2030";
-        paymentCard.Cvc = "123";
+        paymentCard.CardHolderName = model?.CartName;
+        paymentCard.CardNumber =  model?.CartNumber;
+        paymentCard.ExpireMonth =  model?.ExpirationMonth;
+        paymentCard.ExpireYear =  model?.ExpirationYear;
+        paymentCard.Cvc =  model?.Cvc;
         paymentCard.RegisterCard = 0;
         request.PaymentCard = paymentCard;
 
@@ -123,32 +124,18 @@ public class OrderController:Controller
         request.BillingAddress = billingAddress;
 
         List<BasketItem> basketItems = new List<BasketItem>();
-        BasketItem firstBasketItem = new BasketItem();
-        firstBasketItem.Id = "BI101";
-        firstBasketItem.Name = "Binocular";
-        firstBasketItem.Category1 = "Collectibles";
-        firstBasketItem.Category2 = "Accessories";
-        firstBasketItem.ItemType = BasketItemType.PHYSICAL.ToString();
-        firstBasketItem.Price = "0.3";
-        basketItems.Add(firstBasketItem);
 
-        BasketItem secondBasketItem = new BasketItem();
-        secondBasketItem.Id = "BI102";
-        secondBasketItem.Name = "Game code";
-        secondBasketItem.Category1 = "Game";
-        secondBasketItem.Category2 = "Online Game Items";
-        secondBasketItem.ItemType = BasketItemType.VIRTUAL.ToString();
-        secondBasketItem.Price = "0.5";
-        basketItems.Add(secondBasketItem);
-
-        BasketItem thirdBasketItem = new BasketItem();
-        thirdBasketItem.Id = "BI103";
-        thirdBasketItem.Name = "Usb";
-        thirdBasketItem.Category1 = "Electronics";
-        thirdBasketItem.Category2 = "Usb / Cable";
-        thirdBasketItem.ItemType = BasketItemType.PHYSICAL.ToString();
-        thirdBasketItem.Price = "0.2";
-        basketItems.Add(thirdBasketItem);
+        foreach (var item in model?.Cart?.Items ?? Enumerable.Empty<CartItem>())
+        {      
+            BasketItem firstBasketItem = new BasketItem();
+            firstBasketItem.Id = item.Product.Id.ToString();
+            firstBasketItem.Name = item.Product.Name;
+            firstBasketItem.Category1 = "Telefon";
+            firstBasketItem.ItemType = BasketItemType.PHYSICAL.ToString();
+            firstBasketItem.Price = item.Product.Price.ToString();
+            basketItems.Add(firstBasketItem);
+        }
+      
         request.BasketItems = basketItems;
 
         Payment payment = Payment.Create(request, options);

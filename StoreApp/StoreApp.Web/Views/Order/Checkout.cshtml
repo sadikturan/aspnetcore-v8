@@ -24,11 +24,37 @@
                      <label asp-for="@Model.Email"></label>
                      <input asp-for="@Model.Email" class=form-control>
                 </div>
-            </div>
-            <div class="mb-3">
-                <label asp-for="@Model.AddressLine"></label>
+                <div class="mb-3">
+                    <label asp-for="@Model.AddressLine"></label>
                 <textarea asp-for="@Model.AddressLine" class=form-control></textarea>
             </div>
+            </div>
+            <h4 class="my-3">Ödeme Bilgileri</h4>
+             <div class="row">
+                <div class="col">
+                     <label asp-for="@Model.CartName"></label>
+                     <input asp-for="@Model.CartName" class=form-control>
+                </div>
+               <div class="col">
+                     <label asp-for="@Model.CartNumber"></label>
+                     <input asp-for="@Model.CartNumber" class=form-control>
+                </div>
+            </div>
+             <div class="row">
+                <div class="col">
+                     <label asp-for="@Model.ExpirationMonth"></label>
+                     <input asp-for="@Model.ExpirationMonth" class=form-control>
+                </div>
+               <div class="col">
+                     <label asp-for="@Model.ExpirationYear"></label>
+                     <input asp-for="@Model.ExpirationYear" class=form-control>
+                </div>
+                <div class="col">
+                     <label asp-for="@Model.Cvc"></label>
+                     <input asp-for="@Model.Cvc" class=form-control>
+                </div>
+            </div>
+           
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
