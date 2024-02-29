@@ -50,12 +50,13 @@ public class OrderController:Controller
             var payment = ProcessPayment(model);
             if(payment.Status == "success")
             {
+                _orderRepository.SaveOrder(order);
+                cart.Clear();
                 return RedirectToPage("/Completed", new { OrderId = order.Id });
             }
 
-            _orderRepository.SaveOrder(order);
-            cart.Clear();
-            return RedirectToPage("/Completed", new { OrderId = order.Id });
+            model.Cart = cart;
+            return View(model);      
         }   
         else
         {
